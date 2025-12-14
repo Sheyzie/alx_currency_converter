@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import Header from './components/Header';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -32,19 +33,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#C8D1C7] dark:bg-gray-900 transition-colors duration-200">
-      <div className="min-h-screen flex flex-col">
-        {/* Theme Toggle */}
-        <button
-          onClick={toggleDarkMode}
-          className="fixed top-4 right-4 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 z-50"
-          aria-label="Toggle dark mode"
-        >
-          {darkMode ? (
-            <Sun className="w-5 h-5 text-yellow-500" />
-          ) : (
-            <Moon className="w-5 h-5 text-gray-700" />
-          )}
-        </button>
+      <div className="flex flex-col">
+
+        <Header />
 
       </div>
     </div>
