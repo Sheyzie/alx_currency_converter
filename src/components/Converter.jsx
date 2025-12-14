@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ArrowDownUp, Calculator } from 'lucide-react';
 import CurrencySelect from './CurrencySelect';
 import AmountInput from './AmountInput';
+import RateInfo from './RateInfo';
 
 
 // using https://www.exchangerate-api.com/docs/standard-requests
@@ -124,7 +125,7 @@ const Converter = () => {
                 <div className="flex items-center gap-3 mb-6">
                     <Calculator className="w-6 h-6 text-[#A8FFBA] dark:text-[#A8FFBA]" />
                     <h2 className="text-xl font-semibold text-white dark:text-white">
-                        Convert to Over 150+ Currency
+                        Convert to Over 165 Currency
                     </h2>
                 </div>
 
@@ -204,7 +205,16 @@ const Converter = () => {
                 </div>
 
                 {/* Rate Info */}
-                
+                {exchangeRate > 0 && (
+                    <RateInfo
+                        rate={exchangeRate}
+                        fromCurrency={fromCurrency}
+                        toCurrency={toCurrency}
+                        lastUpdated={lastUpdated}
+                        onRefresh={fetchExchangeRate}
+                        isLoading={isLoading}
+                    />
+                )}
 
                 {/* Loading State */}
                 {isLoading && (
@@ -217,7 +227,7 @@ const Converter = () => {
 
             {/* Detail */}
             <div className='bg-[#A0A0A0] dark:bg-[#A0A0A0] rounded-2xl shadow-lg p-6 md:p-8'>
-                <h3 className='text-xl font-semibold text-white dark:text-white mb-2'>Convert to Over 150+ Currency</h3>
+                <h3 className='text-xl font-semibold text-white dark:text-white mb-2'>Convert to Over 165 Currency</h3>
                 <p className='text-[#4A4A4A] dark:text-[#4A4A4A]'>Easy to use currency converter with free API support</p>
             </div>
         </div>
@@ -225,7 +235,7 @@ const Converter = () => {
         <div className='grid grid-cols-1 gap-10'>
             {/* Detail */}
             <div className='bg-[#A0A0A0] dark:bg-[#A0A0A0] rounded-2xl shadow-lg p-6 md:p-8'>
-                <h3 className='text-xl font-semibold text-white dark:text-white mb-2'>Convert to Over 150+ Currency</h3>
+                <h3 className='text-xl font-semibold text-white dark:text-white mb-2'>Convert to Over 165 Currency</h3>
                 <p className='text-[#4A4A4A] dark:text-[#4A4A4A]'>Easy to use currency converter with free API support</p>
             </div>
 
