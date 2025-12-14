@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -36,6 +37,7 @@ function App() {
       <div className="flex flex-col">
 
         <Header />
+        <Footer />
 
       </div>
     </div>
