@@ -4,6 +4,7 @@ import { ArrowDownUp, Calculator } from 'lucide-react';
 import CurrencySelect from './CurrencySelect';
 import AmountInput from './AmountInput';
 import RateInfo from './RateInfo';
+import SupportedCurrency from './SupportedCurrency';
 
 
 // using https://www.exchangerate-api.com/docs/standard-requests
@@ -118,7 +119,7 @@ const Converter = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto grid grid-cols-2 gap-10 p-4 ">
+    <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 p-4">
         <div className='grid grid-cols-1 gap-10'>
             {/* Converter */}
             <div className="bg-[#1A1A1A] dark:bg-[#1A1A1A] rounded-2xl shadow-lg p-6 md:p-8">
@@ -243,6 +244,7 @@ const Converter = () => {
                 <h3 className='text-xl font-semibold text-black dark:text-black mb-2'>Currency Supported</h3>
                 <div>
                     {/* Currency Supported Component */}
+                    <SupportedCurrency />
                 </div>
             </div>
 
