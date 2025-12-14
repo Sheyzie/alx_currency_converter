@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { ArrowDownUp, Calculator } from 'lucide-react';
+import CurrencySelect from './CurrencySelect';
+import AmountInput from './AmountInput';
 
 
 // using https://www.exchangerate-api.com/docs/standard-requests
@@ -120,31 +122,85 @@ const Converter = () => {
             {/* Converter */}
             <div className="bg-[#1A1A1A] dark:bg-[#1A1A1A] rounded-2xl shadow-lg p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                <Calculator className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-xl font-semibold text-white dark:text-white">
-                    Convert to Over 150+ Currency
-                </h2>
+                    <Calculator className="w-6 h-6 text-[#A8FFBA] dark:text-[#A8FFBA]" />
+                    <h2 className="text-xl font-semibold text-white dark:text-white">
+                        Convert to Over 150+ Currency
+                    </h2>
                 </div>
 
                 {/* Converter Form */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Source Currency */}
+                    {/* Source Currency */}
+                    <div className="space-y-6">
+                        <CurrencySelect
+                        label="From"
+                        value={fromCurrency}
+                        onChange={handleFromCurrencyChange}
+                        currencies={currencies}
+                        isLoading={isLoading}
+                        />
+
+                        <AmountInput
+                        value={amount}
+                        onChange={handleAmountChange}
+                        disabled={isLoading}
+                        />
+                        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Source amount</p>
+                            <p className="text-2xl font-bold text-gray-800 dark:text-white">
+                                {parseFloat(amount).toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                                })} {fromCurrency}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Target Currency */}
+                    <div className="space-y-6">
+                        <CurrencySelect
+                        label="To"
+                        value={toCurrency}
+                        onChange={handleToCurrencyChange}
+                        currencies={currencies}
+                        isLoading={isLoading}
+                        />
+                        <div className="flex flex-col gap-2">
+                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Converted Amount
+                            </label>
+                            <div className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
+                                <p className="text-xl font-semibold text-gray-800 dark:text-white">
+                                    {convertedAmount.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })} {toCurrency}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                            <p className="text-sm text-gray-600 dark:text-gray-400">You'll receive</p>
+                            <p className="text-2xl font-bold text-green-700 dark:text-green-400">
+                                {convertedAmount.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                                })} {toCurrency}
+                            </p>
+                        </div>
+                    </div>
                 
+                </div>
 
                 {/* Swap Button */}
-                <div className="flex items-center justify-center lg:justify-center">
+                <div className="flex items-center justify-center lg:justify-center mt-6">
                     <button
                     onClick={swapCurrencies}
                     disabled={isLoading}
-                    className="p-4 rounded-full bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-all duration-200 disabled:opacity-50"
+                    className="p-4 rounded-full bg-green-100 dark:bg-green-900/30 hover:bg-green-200 dark:hover:bg-green-800/50 transition-all duration-200 disabled:opacity-50"
                     aria-label="Swap currencies"
                     >
-                    <ArrowDownUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    <ArrowDownUp className="w-6 h-6 text-green-600 dark:text-green-400" />
                     </button>
-                </div>
-
-                {/* Target Currency */}
-                
                 </div>
 
                 {/* Rate Info */}
